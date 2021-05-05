@@ -1,13 +1,13 @@
 <head>
     <meta charset ="utf-8">
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/d3.v3.js"></script>
     <style>
 
         body {
             padding-top: 45px;
             margin: auto;
             width: 900px;
-            font: 14px arial;
+            font: 9px arial;
         }
 
     </style>
@@ -15,7 +15,7 @@
 
 <body>
 
-<svg width="900" height="400"></svg>
+<svg id="svg1" width="900" height="400"></svg>
 
 Choose type:
 <select id="options"></select>
@@ -23,6 +23,158 @@ Choose type:
 <input type="checkbox" id="sort">
 Toggle sort
 
-<script src="bar1.js">
+<script>
+    d3.csv("data.csv", function(data){
+
+        //
+        // data/key value computations
+        //
+
+        var copy = [];
+
+        var keys = ["DAY 0 00:00:00","DAY 1 00:00:00","DAY 2 00:00:00","DAY 3 00:00:00","DAY 4 00:00:00","DAY 5 00:00:00","DAY 6 00:00:00","DAY 0 00:15:00","DAY 1 00:15:00","DAY 2 00:15:00","DAY 3 00:15:00","DAY 4 00:15:00","DAY 5 00:15:00","DAY 6 00:15:00","DAY 0 00:30:00","DAY 1 00:30:00","DAY 2 00:30:00","DAY 3 00:30:00","DAY 4 00:30:00","DAY 5 00:30:00","DAY 6 00:30:00","DAY 0 00:45:00","DAY 1 00:45:00","DAY 2 00:45:00","DAY 3 00:45:00","DAY 4 00:45:00","DAY 5 00:45:00","DAY 6 00:45:00","DAY 0 01:00:00","DAY 1 01:00:00","DAY 2 01:00:00","DAY 3 01:00:00","DAY 4 01:00:00","DAY 5 01:00:00","DAY 6 01:00:00","DAY 0 01:15:00","DAY 1 01:15:00","DAY 2 01:15:00","DAY 3 01:15:00","DAY 4 01:15:00","DAY 5 01:15:00","DAY 6 01:15:00","DAY 0 01:30:00","DAY 1 01:30:00","DAY 2 01:30:00","DAY 3 01:30:00","DAY 4 01:30:00","DAY 5 01:30:00","DAY 6 01:30:00","DAY 0 01:45:00","DAY 1 01:45:00","DAY 2 01:45:00","DAY 3 01:45:00","DAY 4 01:45:00","DAY 5 01:45:00","DAY 6 01:45:00","DAY 0 02:00:00","DAY 1 02:00:00","DAY 2 02:00:00","DAY 3 02:00:00","DAY 4 02:00:00","DAY 5 02:00:00","DAY 6 02:00:00","DAY 0 02:15:00","DAY 1 02:15:00","DAY 2 02:15:00","DAY 3 02:15:00","DAY 4 02:15:00","DAY 5 02:15:00","DAY 6 02:15:00","DAY 0 02:30:00","DAY 1 02:30:00","DAY 2 02:30:00","DAY 3 02:30:00","DAY 4 02:30:00","DAY 5 02:30:00","DAY 6 02:30:00","DAY 0 02:45:00","DAY 1 02:45:00","DAY 2 02:45:00","DAY 3 02:45:00","DAY 4 02:45:00","DAY 5 02:45:00","DAY 6 02:45:00","DAY 0 03:00:00","DAY 1 03:00:00","DAY 2 03:00:00","DAY 3 03:00:00","DAY 4 03:00:00","DAY 5 03:00:00","DAY 6 03:00:00","DAY 0 03:15:00","DAY 1 03:15:00","DAY 2 03:15:00","DAY 3 03:15:00","DAY 4 03:15:00","DAY 5 03:15:00","DAY 6 03:15:00","DAY 0 03:30:00","DAY 1 03:30:00","DAY 2 03:30:00","DAY 3 03:30:00","DAY 4 03:30:00","DAY 5 03:30:00","DAY 6 03:30:00","DAY 0 03:45:00","DAY 1 03:45:00","DAY 2 03:45:00","DAY 3 03:45:00","DAY 4 03:45:00","DAY 5 03:45:00","DAY 6 03:45:00","DAY 0 04:00:00","DAY 1 04:00:00","DAY 2 04:00:00","DAY 3 04:00:00","DAY 4 04:00:00","DAY 5 04:00:00","DAY 6 04:00:00","DAY 0 04:15:00","DAY 1 04:15:00","DAY 2 04:15:00","DAY 3 04:15:00","DAY 4 04:15:00","DAY 5 04:15:00","DAY 6 04:15:00","DAY 0 04:30:00","DAY 1 04:30:00","DAY 2 04:30:00","DAY 3 04:30:00","DAY 4 04:30:00","DAY 5 04:30:00","DAY 6 04:30:00","DAY 0 04:45:00","DAY 1 04:45:00","DAY 2 04:45:00","DAY 3 04:45:00","DAY 4 04:45:00","DAY 5 04:45:00","DAY 6 04:45:00","DAY 0 05:00:00","DAY 1 05:00:00","DAY 2 05:00:00","DAY 3 05:00:00","DAY 4 05:00:00","DAY 5 05:00:00","DAY 6 05:00:00","DAY 0 05:15:00","DAY 1 05:15:00","DAY 2 05:15:00","DAY 3 05:15:00","DAY 4 05:15:00","DAY 5 05:15:00","DAY 6 05:15:00","DAY 0 05:30:00","DAY 1 05:30:00","DAY 2 05:30:00","DAY 3 05:30:00","DAY 4 05:30:00","DAY 5 05:30:00","DAY 6 05:30:00","DAY 0 05:45:00","DAY 1 05:45:00","DAY 2 05:45:00","DAY 3 05:45:00","DAY 4 05:45:00","DAY 5 05:45:00","DAY 6 05:45:00","DAY 0 06:00:00","DAY 1 06:00:00","DAY 2 06:00:00","DAY 3 06:00:00","DAY 4 06:00:00","DAY 5 06:00:00","DAY 6 06:00:00","DAY 0 06:15:00","DAY 1 06:15:00","DAY 2 06:15:00","DAY 3 06:15:00","DAY 4 06:15:00","DAY 5 06:15:00","DAY 6 06:15:00","DAY 0 06:30:00","DAY 1 06:30:00","DAY 2 06:30:00","DAY 3 06:30:00","DAY 4 06:30:00","DAY 5 06:30:00","DAY 6 06:30:00","DAY 0 06:45:00","DAY 1 06:45:00","DAY 2 06:45:00","DAY 3 06:45:00","DAY 4 06:45:00","DAY 5 06:45:00","DAY 6 06:45:00","DAY 0 07:00:00","DAY 1 07:00:00","DAY 2 07:00:00","DAY 3 07:00:00","DAY 4 07:00:00","DAY 5 07:00:00","DAY 6 07:00:00","DAY 0 07:15:00","DAY 1 07:15:00","DAY 2 07:15:00","DAY 3 07:15:00","DAY 4 07:15:00","DAY 5 07:15:00","DAY 6 07:15:00","DAY 0 07:30:00","DAY 1 07:30:00","DAY 2 07:30:00","DAY 3 07:30:00","DAY 4 07:30:00","DAY 5 07:30:00","DAY 6 07:30:00","DAY 0 07:45:00","DAY 1 07:45:00","DAY 2 07:45:00","DAY 3 07:45:00","DAY 4 07:45:00","DAY 5 07:45:00","DAY 6 07:45:00","DAY 0 08:00:00","DAY 1 08:00:00","DAY 2 08:00:00","DAY 3 08:00:00","DAY 4 08:00:00","DAY 5 08:00:00","DAY 6 08:00:00","DAY 0 08:15:00","DAY 1 08:15:00","DAY 2 08:15:00","DAY 3 08:15:00","DAY 4 08:15:00","DAY 5 08:15:00","DAY 6 08:15:00","DAY 0 08:30:00","DAY 1 08:30:00","DAY 2 08:30:00","DAY 3 08:30:00","DAY 4 08:30:00","DAY 5 08:30:00","DAY 6 08:30:00","DAY 0 08:45:00","DAY 1 08:45:00","DAY 2 08:45:00","DAY 3 08:45:00","DAY 4 08:45:00","DAY 5 08:45:00","DAY 6 08:45:00","DAY 0 09:00:00","DAY 1 09:00:00","DAY 2 09:00:00","DAY 3 09:00:00","DAY 4 09:00:00","DAY 5 09:00:00","DAY 6 09:00:00","DAY 0 09:15:00","DAY 1 09:15:00","DAY 2 09:15:00","DAY 3 09:15:00","DAY 4 09:15:00","DAY 5 09:15:00","DAY 6 09:15:00","DAY 0 09:30:00","DAY 1 09:30:00","DAY 2 09:30:00","DAY 3 09:30:00","DAY 4 09:30:00","DAY 5 09:30:00","DAY 6 09:30:00","DAY 0 09:45:00","DAY 1 09:45:00","DAY 2 09:45:00","DAY 3 09:45:00","DAY 4 09:45:00","DAY 5 09:45:00","DAY 6 09:45:00","DAY 0 10:00:00","DAY 1 10:00:00","DAY 2 10:00:00","DAY 3 10:00:00","DAY 4 10:00:00","DAY 5 10:00:00","DAY 6 10:00:00","DAY 0 10:15:00","DAY 1 10:15:00","DAY 2 10:15:00","DAY 3 10:15:00","DAY 4 10:15:00","DAY 5 10:15:00","DAY 6 10:15:00","DAY 0 10:30:00","DAY 1 10:30:00","DAY 2 10:30:00","DAY 3 10:30:00","DAY 4 10:30:00","DAY 5 10:30:00","DAY 6 10:30:00","DAY 0 10:45:00","DAY 1 10:45:00","DAY 2 10:45:00","DAY 3 10:45:00","DAY 4 10:45:00","DAY 5 10:45:00","DAY 6 10:45:00","DAY 0 11:00:00","DAY 1 11:00:00","DAY 2 11:00:00","DAY 3 11:00:00","DAY 4 11:00:00","DAY 5 11:00:00","DAY 6 11:00:00","DAY 0 11:15:00","DAY 1 11:15:00","DAY 2 11:15:00","DAY 3 11:15:00","DAY 4 11:15:00","DAY 5 11:15:00","DAY 6 11:15:00","DAY 0 11:30:00","DAY 1 11:30:00","DAY 2 11:30:00","DAY 3 11:30:00","DAY 4 11:30:00","DAY 5 11:30:00","DAY 6 11:30:00","DAY 0 11:45:00","DAY 1 11:45:00","DAY 2 11:45:00","DAY 3 11:45:00","DAY 4 11:45:00","DAY 5 11:45:00","DAY 6 11:45:00","DAY 0 12:00:00","DAY 1 12:00:00","DAY 2 12:00:00","DAY 3 12:00:00","DAY 4 12:00:00","DAY 5 12:00:00","DAY 6 12:00:00","DAY 0 12:15:00","DAY 1 12:15:00","DAY 2 12:15:00","DAY 3 12:15:00","DAY 4 12:15:00","DAY 5 12:15:00","DAY 6 12:15:00","DAY 0 12:30:00","DAY 1 12:30:00","DAY 2 12:30:00","DAY 3 12:30:00","DAY 4 12:30:00","DAY 5 12:30:00","DAY 6 12:30:00","DAY 0 12:45:00","DAY 1 12:45:00","DAY 2 12:45:00","DAY 3 12:45:00","DAY 4 12:45:00","DAY 5 12:45:00","DAY 6 12:45:00","DAY 0 13:00:00","DAY 1 13:00:00","DAY 2 13:00:00","DAY 3 13:00:00","DAY 4 13:00:00","DAY 5 13:00:00","DAY 6 13:00:00","DAY 0 13:15:00","DAY 1 13:15:00","DAY 2 13:15:00","DAY 3 13:15:00","DAY 4 13:15:00","DAY 5 13:15:00","DAY 6 13:15:00","DAY 0 13:30:00","DAY 1 13:30:00","DAY 2 13:30:00","DAY 3 13:30:00","DAY 4 13:30:00","DAY 5 13:30:00","DAY 6 13:30:00","DAY 0 13:45:00","DAY 1 13:45:00","DAY 2 13:45:00","DAY 3 13:45:00","DAY 4 13:45:00","DAY 5 13:45:00","DAY 6 13:45:00","DAY 0 14:00:00","DAY 1 14:00:00","DAY 2 14:00:00","DAY 3 14:00:00","DAY 4 14:00:00","DAY 5 14:00:00","DAY 6 14:00:00","DAY 0 14:15:00","DAY 1 14:15:00","DAY 2 14:15:00","DAY 3 14:15:00","DAY 4 14:15:00","DAY 5 14:15:00","DAY 6 14:15:00","DAY 0 14:30:00","DAY 1 14:30:00","DAY 2 14:30:00","DAY 3 14:30:00","DAY 4 14:30:00","DAY 5 14:30:00","DAY 6 14:30:00","DAY 0 14:45:00","DAY 1 14:45:00","DAY 2 14:45:00","DAY 3 14:45:00","DAY 4 14:45:00","DAY 5 14:45:00","DAY 6 14:45:00","DAY 0 15:00:00","DAY 1 15:00:00","DAY 2 15:00:00","DAY 3 15:00:00","DAY 4 15:00:00","DAY 5 15:00:00","DAY 6 15:00:00","DAY 0 15:15:00","DAY 1 15:15:00","DAY 2 15:15:00","DAY 3 15:15:00","DAY 4 15:15:00","DAY 5 15:15:00","DAY 6 15:15:00","DAY 0 15:30:00","DAY 1 15:30:00","DAY 2 15:30:00","DAY 3 15:30:00","DAY 4 15:30:00","DAY 5 15:30:00","DAY 6 15:30:00","DAY 0 15:45:00","DAY 1 15:45:00","DAY 2 15:45:00","DAY 3 15:45:00","DAY 4 15:45:00","DAY 5 15:45:00","DAY 6 15:45:00","DAY 0 16:00:00","DAY 1 16:00:00","DAY 2 16:00:00","DAY 3 16:00:00","DAY 4 16:00:00","DAY 5 16:00:00","DAY 6 16:00:00","DAY 0 16:15:00","DAY 1 16:15:00","DAY 2 16:15:00","DAY 3 16:15:00","DAY 4 16:15:00","DAY 5 16:15:00","DAY 6 16:15:00","DAY 0 16:30:00","DAY 1 16:30:00","DAY 2 16:30:00","DAY 3 16:30:00","DAY 4 16:30:00","DAY 5 16:30:00","DAY 6 16:30:00","DAY 0 16:45:00","DAY 1 16:45:00","DAY 2 16:45:00","DAY 3 16:45:00","DAY 4 16:45:00","DAY 5 16:45:00","DAY 6 16:45:00","DAY 0 17:00:00","DAY 1 17:00:00","DAY 2 17:00:00","DAY 3 17:00:00","DAY 4 17:00:00","DAY 5 17:00:00","DAY 6 17:00:00","DAY 0 17:15:00","DAY 1 17:15:00","DAY 2 17:15:00","DAY 3 17:15:00","DAY 4 17:15:00","DAY 5 17:15:00","DAY 6 17:15:00","DAY 0 17:30:00","DAY 1 17:30:00","DAY 2 17:30:00","DAY 3 17:30:00","DAY 4 17:30:00","DAY 5 17:30:00","DAY 6 17:30:00","DAY 0 17:45:00","DAY 1 17:45:00","DAY 2 17:45:00","DAY 3 17:45:00","DAY 4 17:45:00","DAY 5 17:45:00","DAY 6 17:45:00","DAY 0 18:00:00","DAY 1 18:00:00","DAY 2 18:00:00","DAY 3 18:00:00","DAY 4 18:00:00","DAY 5 18:00:00","DAY 6 18:00:00","DAY 0 18:15:00","DAY 1 18:15:00","DAY 2 18:15:00","DAY 3 18:15:00","DAY 4 18:15:00","DAY 5 18:15:00","DAY 6 18:15:00","DAY 0 18:30:00","DAY 1 18:30:00","DAY 2 18:30:00","DAY 3 18:30:00","DAY 4 18:30:00","DAY 5 18:30:00","DAY 6 18:30:00","DAY 0 18:45:00","DAY 1 18:45:00","DAY 2 18:45:00","DAY 3 18:45:00","DAY 4 18:45:00","DAY 5 18:45:00","DAY 6 18:45:00","DAY 0 19:00:00","DAY 1 19:00:00","DAY 2 19:00:00","DAY 3 19:00:00","DAY 4 19:00:00","DAY 5 19:00:00","DAY 6 19:00:00","DAY 0 19:15:00","DAY 1 19:15:00","DAY 2 19:15:00","DAY 3 19:15:00","DAY 4 19:15:00","DAY 5 19:15:00","DAY 6 19:15:00","DAY 0 19:30:00","DAY 1 19:30:00","DAY 2 19:30:00","DAY 3 19:30:00","DAY 4 19:30:00","DAY 5 19:30:00","DAY 6 19:30:00","DAY 0 19:45:00","DAY 1 19:45:00","DAY 2 19:45:00","DAY 3 19:45:00","DAY 4 19:45:00","DAY 5 19:45:00","DAY 6 19:45:00","DAY 0 20:00:00","DAY 1 20:00:00","DAY 2 20:00:00","DAY 3 20:00:00","DAY 4 20:00:00","DAY 5 20:00:00","DAY 6 20:00:00","DAY 0 20:15:00","DAY 1 20:15:00","DAY 2 20:15:00","DAY 3 20:15:00","DAY 4 20:15:00","DAY 5 20:15:00","DAY 6 20:15:00","DAY 0 20:30:00","DAY 1 20:30:00","DAY 2 20:30:00","DAY 3 20:30:00","DAY 4 20:30:00","DAY 5 20:30:00","DAY 6 20:30:00","DAY 0 20:45:00","DAY 1 20:45:00","DAY 2 20:45:00","DAY 3 20:45:00","DAY 4 20:45:00","DAY 5 20:45:00","DAY 6 20:45:00","DAY 0 21:00:00","DAY 1 21:00:00","DAY 2 21:00:00","DAY 3 21:00:00","DAY 4 21:00:00","DAY 5 21:00:00","DAY 6 21:00:00","DAY 0 21:15:00","DAY 1 21:15:00","DAY 2 21:15:00","DAY 3 21:15:00","DAY 4 21:15:00","DAY 5 21:15:00","DAY 6 21:15:00","DAY 0 21:30:00","DAY 1 21:30:00","DAY 2 21:30:00","DAY 3 21:30:00","DAY 4 21:30:00","DAY 5 21:30:00","DAY 6 21:30:00","DAY 0 21:45:00","DAY 1 21:45:00","DAY 2 21:45:00","DAY 3 21:45:00","DAY 4 21:45:00","DAY 5 21:45:00","DAY 6 21:45:00","DAY 0 22:00:00","DAY 1 22:00:00","DAY 2 22:00:00","DAY 3 22:00:00","DAY 4 22:00:00","DAY 5 22:00:00","DAY 6 22:00:00","DAY 0 22:15:00","DAY 1 22:15:00","DAY 2 22:15:00","DAY 3 22:15:00","DAY 4 22:15:00","DAY 5 22:15:00","DAY 6 22:15:00","DAY 0 22:30:00","DAY 1 22:30:00","DAY 2 22:30:00","DAY 3 22:30:00","DAY 4 22:30:00","DAY 5 22:30:00","DAY 6 22:30:00","DAY 0 22:45:00","DAY 1 22:45:00","DAY 2 22:45:00","DAY 3 22:45:00","DAY 4 22:45:00","DAY 5 22:45:00","DAY 6 22:45:00","DAY 0 23:00:00","DAY 1 23:00:00","DAY 2 23:00:00","DAY 3 23:00:00","DAY 4 23:00:00","DAY 5 23:00:00","DAY 6 23:00:00","DAY 0 23:15:00","DAY 1 23:15:00","DAY 2 23:15:00","DAY 3 23:15:00","DAY 4 23:15:00","DAY 5 23:15:00","DAY 6 23:15:00","DAY 0 23:30:00","DAY 1 23:30:00","DAY 2 23:30:00","DAY 3 23:30:00","DAY 4 23:30:00","DAY 5 23:30:00","DAY 6 23:30:00","DAY 0 23:45:00","DAY 1 23:45:00","DAY 2 23:45:00","DAY 3 23:45:00","DAY 4 23:45:00","DAY 5 23:45:00","DAY 6 23:45:00","DAY 0 Total","DAY 1 Total","DAY 2 Total","DAY 3 Total","DAY 4 Total","DAY 5 Total","DAY 6 Total"]
+
+        console.log(keys)
+        keys.forEach(d => copy.push(d.split(' ')))
+
+        var type = [...new Set(copy.map(d => d[2]))]
+        var xMap = [...new Set(data.map(d => d.State))]
+
+        var options = d3.select("#options").selectAll("option")
+            .data(type)
+            .enter().append("option")
+            .attr("value", d => d)
+            .text(d => "Type: " + d)
+
+        //
+        // append svg and axis
+        //
+
+        var svg = d3.select("#svg1"),
+            margin = {top: 25, right: 20, bottom: 25, left: 30},
+            width = +svg.attr("width") - margin.left - margin.right,
+            height = +svg.attr("height") - margin.top - margin.bottom;
+
+        var x0 = d3.scale.ordinal()
+            .rangeRoundBands([margin.left, width - margin.right], .1);
+
+        var x1 = d3.scale.ordinal()
+            .rangeRoundBands(0.05)
+
+        var y = d3.scale.linear()
+            .rangeRound([height, margin.top]);
+
+        var xAxis = svg.append("g")
+            .attr("class", "x-axis")
+            .attr("transform", "translate(0," + height + ")")
+
+        var yAxis = svg.append("g")
+            .attr("class", "y-axis")
+            .attr("transform", "translate(" + margin.left + ",0)")
+
+        var teamColor = d3.scale.ordinal()
+            .range(["red", "orange", "yellow", "green", "blue", "indigo", "violet"]);
+
+        update(d3.select("#options").property("value"), 0);
+
+        function update(input, speed) {
+
+            //
+            // sort and filter data
+            //
+
+            var teams = keys.filter(f => f.includes(input))
+
+            data.forEach(function(d) {
+                var sum = 0;
+                for (var i = 0; i < teams.length; i++) {
+                    sum += +d[teams[i]]
+                }
+                d.total = sum;
+                return d;
+            })
+
+            data.sort(d3.select("#sort").property("checked")
+                ? (a, b) => b.total - a.total
+                : (a, b) => xMap.indexOf(a.State) - xMap.indexOf(b.State))
+
+            y.domain([0, d3.max(data, d => d.total)]).nice();
+
+            x0.domain(data.map(d => d.State))
+            x1.domain(teams).rangeRoundBands([0, x0.rangeBand()])
+
+            //
+            // append rectangles
+            //
+
+            var barGroups = svg.selectAll(".layer")
+                .data(data, d => d.State);
+
+            barGroups.exit().remove();
+
+            barGroups.enter().append("g")
+                .classed('layer', true);
+
+            svg.selectAll(".layer").transition().duration(speed)
+                .attr("transform", d => "translate(" + x0(d.State) + ",0)")
+
+            var bars = svg.selectAll(".layer").selectAll(".bars")
+                .data(function(d) {
+                    return teams.map(function(key) {
+                        return {key: key, value: +d[key]};
+                    });
+                })
+
+            bars.exit().remove()
+
+            bars.enter().append("rect")
+                .attr("class", "bars")
+                .attr("fill", d => teamColor(d.key))
+                .transition().duration(speed)
+                .attr("width", x1.rangeBand())
+                .attr("x", d => x1(d.key))
+                .attr("y", d => y(d.value))
+                .attr("height", d => height - y(d.value))
+
+            var totalBars = svg.selectAll(".totalBars")
+                .data(data, d => d.State)
+
+            totalBars.exit().remove()
+
+            totalBars.enter().append("rect")
+                .attr("class", "totalBars")
+                .attr("fill", "none")
+                .attr("stroke", "#555")
+                .attr("width", x0.rangeBand())
+                .transition().duration(speed)
+                .attr("x", d => x0(d.State))
+                .attr("y", d => y(d.total))
+                .attr("height", d => height - y(d.total))
+
+            //
+            // call y & x axis
+            //
+
+            yAxis.transition().duration(speed)
+                .call(d3.svg.axis().scale(y).orient("left").ticks(null, "s"))
+
+            xAxis.transition().duration(speed)
+                .call(d3.svg.axis().scale(x0).orient("bottom"));
+        }
+
+        var select = d3.select("#options")
+            .style("border-radius", "5px")
+            .style("padding", "1px 3px 1px 3px")
+            .on("change", function() {
+                update(this.value, 750)
+            })
+
+        var checkbox = d3.select("#sort")
+            .style("margin-left", "50%")
+            .on("click", function() {
+                update(select.property("value"), 750)
+            })
+    })
 </script>
+
 </body>

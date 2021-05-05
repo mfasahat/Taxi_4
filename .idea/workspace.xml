@@ -24,7 +24,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/PycharmProjects/pythonProject" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -40,10 +40,22 @@
       <workItem from="1619371736396" duration="135000" />
       <workItem from="1619884524463" duration="356000" />
       <workItem from="1619978430372" duration="1163000" />
+      <workItem from="1619980205577" duration="1531000" />
+      <workItem from="1620046712022" duration="14261000" />
+      <workItem from="1620061924300" duration="3441000" />
+      <workItem from="1620078186253" duration="13902000" />
+      <workItem from="1620169067742" duration="1021000" />
+      <workItem from="1620170201430" duration="65000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="422" y="96" key="FileChooserDialogImpl" timestamp="1620081210340">
+      <screen x="0" y="0" width="1280" height="680" />
+    </state>
+    <state x="422" y="96" key="FileChooserDialogImpl/0.0.1280.680@0.0.1280.680" timestamp="1620081210340" />
   </component>
 </project>

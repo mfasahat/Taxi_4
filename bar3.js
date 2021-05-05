@@ -1,6 +1,6 @@
-d3.csv("data.csv").then(d => chart(d))
+d3.csv("data3.csv").then(d => chart3(d))
 
-function chart(data) {
+function chart3(data) {
 
     //
     // data/key value computations
@@ -14,7 +14,7 @@ function chart(data) {
     var type = [...new Set(copy.map(d => d[2]))]
     var xMap = [...new Set(data.map(d => d.State))]
 
-    var options = d3.select("#options").selectAll("option")
+    var options = d3.select("#options3").selectAll("option")
         .data(type)
         .enter().append("option")
         .attr("value", d => d)
@@ -24,7 +24,7 @@ function chart(data) {
     // append svg and axis
     //
 
-    var svg = d3.select("#svg"),
+    var svg = d3.select("#svg3"),
         margin = {top: 25, right: 20, bottom: 25, left: 30},
         width = +svg.attr("width") - margin.left - margin.right,
         height = +svg.attr("height") - margin.top - margin.bottom;
@@ -51,7 +51,7 @@ function chart(data) {
     var teamColor = d3.scaleOrdinal()
         .range(["red", "orange", "yellow", "green", "blue", "indigo", "violet"]);
 
-    update(d3.select("#options").property("value"), 0);
+    update(d3.select("#options3").property("value"), 0);
 
     function update(input, speed) {
 
@@ -70,7 +70,7 @@ function chart(data) {
             return d;
         })
 
-        data.sort(d3.select("#sort").property("checked")
+        data.sort(d3.select("#sort3").property("checked")
             ? (a, b) => b.total - a.total
             : (a, b) => xMap.indexOf(a.State) - xMap.indexOf(b.State))
 
@@ -140,14 +140,14 @@ function chart(data) {
             .call(d3.axisBottom(x0));
     }
 
-    var select = d3.select("#options")
+    var select = d3.select("#options3")
         .style("border-radius", "5px")
         .style("padding", "1px 3px 1px 3px")
         .on("change", function() {
             update(this.value, 750)
         })
 
-    var checkbox = d3.select("#sort")
+    var checkbox = d3.select("#sort3")
         .style("margin-left", "50%")
         .on("click", function() {
             update(select.property("value"), 750)
