@@ -18,7 +18,7 @@ function chart(data) {
         .data(type)
         .enter().append("option")
         .attr("value", d => d)
-        .text(d => "Type: " + d)
+        .text(d => "Time: " + d)
 
     //
     // append svg and axis
@@ -44,9 +44,24 @@ function chart(data) {
         .attr("class", "x-axis")
         .attr("transform", "translate(0," + height + ")")
 
+    svg.append("text")
+        .attr("transform",
+            "translate(" + (width/2) + " ," +
+            (height + margin.top + 20) + ")")
+        .style("text-anchor", "middle")
+        .text("Empty Trip Duration in Hours");
+
     var yAxis = svg.append("g")
         .attr("class", "y-axis")
         .attr("transform", "translate(" + margin.left + ",0)")
+
+    svg.append("text")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 0 - margin.left)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "1em")
+        .style("text-anchor", "middle")
+        .text("Frequency");
 
     var teamColor = d3.scaleOrdinal()
         .range(["red", "orange", "yellow", "green", "blue", "indigo", "violet"]);
