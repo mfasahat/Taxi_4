@@ -58,7 +58,7 @@ function chart(data) {
     svg.append("text")
         .attr("transform", "rotate(-90)")
         .attr("y", 60 - margin.left)
-        .attr("x",140 - (height / 2))
+        .attr("x",130 - (height / 2))
         .attr("dy", "1em")
         .style("text-anchor", "middle")
         .text("Frequency");
