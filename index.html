@@ -88,7 +88,7 @@
 
 <div class="container one-bottom">
     <h2>Introduction: Empty Taxi Trips</h2>
-    <h6>Chicago, Illinois is the third largest city in America, boasting a resident population totaling nearly three million people spread over 234 square miles. The city consistently ranks among the top 10 most visited cities in the country and has two international airports serving the city, allowing around 55 million tourists to visit annually. Such a large influx of people into the city generates a high demand for travel and requires an efficient system to get people where they need to go. Arguably, the city of Chicago’s most iconic means of transportation is, and remains, the taxi.
+    <h6>Chicago, Illinois is the third largest city in America, boasting a resident population totaling nearly three million people spread over 234 square miles. The city consistently ranks among the top 10 most visited cities in the country and has not one, but two international airports serving the city, allowing for around 55 million tourists to visit Chicago annually. With such a large influx of people every year due to business and tourism, along with the people of Chicago who already call the city home, there is a  constant demand for highly efficient modes of transportation into and around the city. Arguably, the city of Chicago’s most iconic and versatile means of transportation is, and remains, the Taxi.
     </h6>
     <h6>For a taxi company where efficiency is a necessity in maintaining profitability, understanding how to maximize their fleet’s cost of time is essential for successful business operations. Studying taxi trip data, made publicly available by the City of Chicago, we venture to explore taxi utilization, specifically empty trips, where taxis have no passengers. By analyzing empty trip data, or time spent off the clock, we can gain better insight as to the rhythms and patterns of Chicago's taxi services and make more educated decisions regarding transportation and city-wide mobility. </h6>
 </div>
@@ -107,6 +107,7 @@
 
 <div class="container one-bottom">
 <h3> Stream Graph <i class="fas fa-chart-bar"></i></h3>
+<h5> Analysing the number of idle trips during a 24-hour period</h5>
 </div>
 <div class="chart">
 </div>
@@ -118,6 +119,7 @@
 
 <div class="container one-bottom">
     <h3> Grouped Bar Chart <i class="fas fa-chart-bar"></i></h3>
+    <h5>Analyzing idle trips over a weekly period</h5>
 
     <svg id="svg" width="900" height="400"></svg>
     <br>
@@ -162,10 +164,12 @@
 
 <div class="container one-bottom">
     <h2>Conclusions and Moving Forward <i class="fas fa-project-diagram"></i></h2>
-    <h6>After having analyzed our data set visually, we can draw conclusions based on our observations. The first finding is that there are two peaks of empty trim times throughout a 24 hour period: the morning and evening commutes, where taxis are frequently moving, yet remain half of the time. The second finding is that the majority of Chicago’s taxi drivers operate from Monday morning to Saturday morning, having taken the rest of the weekend off.</h6>
-    <h6>Drawing conclusions from our findings, we can reason that reducing unoccupied taxi trip time presents an opportunity to reduce overall traffic congestion in Chicago, improve citywide mobility, and improve taxi driver profit by increasing their overall utilization. </h6>
-    <h6>Furthermore, due to decreased taxi operation volume on weekends, it would be wise for the city of Chicago to study and potentially invest in additional supplemental modes of transportation during the periods when taxi companies are not operating as fully. Adjusting schedules to allow for additional public transportation might decrease overall traffic congestion on the days taxis are in reduced operations.</h6>
-    <h6>While our visualizations provide us with the necessary information to observe these findings, a plausible next step would be to develop a simulation or model. This would allow us to examine specific variables that would benefit or challenge our assumptions. An example of such a simulation could be utilizing the idle time between pick up and drop off at each popular destination located in Chicago, in relation to taxi fare and taxi demand. Allowing us to look at the cost of idle time in respect to revenue loss or profit between these destinations, and find the optimal efficiency of taxi distribution throughout any given day.</h6>
+    <h6>The research discussed in this paper sought to further analyze and understand the complexities behind taxi operations in a large metropolitan city. Using publically available data from the City of Chicago, our team analyzed lengths of idle taxi trips, where operators had no passengers. Through the use of computational analysis paired with data visualizations, our team was able to gain interesting insights into the weekly operations of Chicago’s taxi system. 
+</h6>
+    <h6>From our visualizations, we were able to observe accumulations of idle trip lengths plotted across a week. We found that there are two peaks of these idle trip accumulations that occur at the beginning and end of the work day, 7 AM, and 6 PM respectively. It is plausible the reason for these increased accumulations of idle trip lengths might have to do with traffic congestion occurring during these peak traffic hours and drivers not being able to travel efficiently. Looking again at the streamgraph, an additional accumulation of idle trip lengths occurs around hour 40 and 64 out of a 168 hour work week (starting on Sunday). These blocks of idle trips occurring over the weekends represent time spent between the last passenger drop off to the next passenger pickup. From our dataset we can speculate that when taxi drivers choose to take one day off a week. They either choose Saturday or Sunday. </h6>
+
+    <h6>Our research has led us to a better understanding of Chicago’s taxi operations. Expanding on this research, it would be interesting to see how these idle trip times could be expressed in terms of cost of time and missed opportunities to analyze what economic impacts idle trips have on a taxi company’s revenue. Assuming the lengths of idle trips could be converted into monetary terms (time, fuel spent, overhead, driver’s wages, wasted opportunities, etc.) economic costs would become clear, and solutions for reducing wasted idle time would likely become a priority for profit-driven taxi companies. 
+</h6>
 </div>
 
 <div class="container one-bottom" >
@@ -288,9 +292,9 @@
             svg.append("text")
                 .attr("class", "x label")
                 .attr("text-anchor", "end")
-                .attr("x", width)
+                .attr("x", width - 30)
                 .attr("y", height - 6)
-                .text("Time of the Day     ");
+                .text("Time of the Day (hour)    ");
 
             svg.append("g")
                 .attr("class", "y axis")
@@ -303,11 +307,11 @@
 
             svg.append("text")
                 .attr("transform", "rotate(-90)")
-                .attr("y", 0 - margin.left)
-                .attr("x",0 - (height / 2))
+                .attr("y", 20 - margin.left)
+                .attr("x",180 - (height / 2))
                 .attr("dy", "1em")
                 .style("text-anchor", "middle")
-                .text("Frequency");
+                .text("#Frequency");
 
             svg.selectAll(".layer")
                 .attr("opacity", 1)
